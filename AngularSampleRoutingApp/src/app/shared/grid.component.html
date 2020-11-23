@@ -1,0 +1,11 @@
+<div class='card-body' id='mytable'>
+    <div class='row' *ngIf='gridData && gridData.length'>
+      <div class='col-md-2'  *ngFor="let col of gridColumns">{{col.colName}}</div>
+    </div>
+    <div class='row' *ngFor="let colObj of gridData">
+        <div class='col-md-2' *ngFor="let col of gridColumns">{{colObj[col.colName]}}</div>
+        <div class='col-md-4'>
+            <a (click)="SelectGrid(colObj)" [routerLink]="['/customers/add']">select</a>
+        </div>
+      </div>
+</div>

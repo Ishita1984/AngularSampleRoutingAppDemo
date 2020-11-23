@@ -1,0 +1,50 @@
+<div class="card">
+    <div class="card-header">
+      {{pageTitle}}
+    </div>  
+    <form [formGroup]="CustomerModel.formCustomerGroup">
+    <div class='card-body'>
+      <div class='row'>
+        <div class='col-md-4' *ngIf="CustomerModel.formCustomerGroup.dirty" 
+      [hidden]="!(hasError('pattern','CustomerCodeControl'))" >Customer code format is not proper</div>
+      </div>         
+      <div class='row'><div div class='col-md-4' *ngIf="CustomerModel.formCustomerGroup.dirty" 
+        [hidden]="!(hasError('required','CustomerCodeControl'))">Customer code is required</div></div>
+      <div class='row'><div div class='col-md-4' *ngIf="CustomerModel.formCustomerGroup.dirty"
+        [hidden]="!(hasError('required','CustomerNameControl'))"
+>           Customer name is required</div> </div>  
+      <div class='row'>
+          <div class='col-md-2'>* Customer Name:</div>
+          <div class='col-md-4'>
+            <input type='text' id="txtCustomerName" formControlName="CustomerNameControl" 
+            [(ngModel)]="CustomerModel.CustomerName"/>
+          </div>         
+        </div><br>
+        <div class='row'>
+            <div class='col-md-2'>* Customer Code:</div>
+            <div class='col-md-4'>
+              <input type='text' id="txtCustomerCode"  formControlName="CustomerCodeControl" 
+              [(ngModel)]="CustomerModel.CustomerCode"/>
+            </div>           
+          </div><br>
+          <div class='row'>
+            <div class='col-md-2'>Customer Address:</div>
+            <div class='col-md-4'>
+              <input type='text' id="txtCustomerAddress" [(ngModel)]="CustomerModel.CustomerAddress"
+              [ngModelOptions]="{standalone: true}"/>
+            </div>           
+          </div><br> 
+          <div class='row'>
+            <div class='col-md-2'>&nbsp;</div>
+            <div class='col-md-4'>
+              <input type='button' id="btnAdd" value="Add" [disabled]="!(CustomerModel.formCustomerGroup.valid)" (click)="Add()"/>
+            </div>           
+          </div>
+    </div></form>
+    <grid-ui [grid-columns]="[{'colName':'CustomerCode'},{'colName':'CustomerName'},{'colName':'CustomerAddress'}]" 
+    [grid-data]="CustomerModels"
+      (grid-selected)="SelectCustomer($event)"
+    ></grid-ui>
+    </div>
+
+ 
